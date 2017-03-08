@@ -1,6 +1,7 @@
 ## About Serverless: 
 * [Serverless Application Model (SAM)](https://github.com/awslabs/serverless-application-model)
 * [Serverless Framework](https://github.com/serverless/serverless)
+* [Serverless Framework Docs](https://serverless.com/framework/docs/)
 
 ## Deployment Options
 * [Apex](http://apex.run/)
