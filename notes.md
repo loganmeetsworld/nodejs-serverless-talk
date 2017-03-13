@@ -51,18 +51,30 @@ IAM/authentication for credential management
 ---
 
 ## AWS Lambda
+Simple: You define a function that performs an operation and AWS provisions and schedules the function. 
 
+All about data flow. Data flows in, data flows out. 
+
+For example 
+SNS Notifications / S3 uploads -> LAMBDA -> visualization, slack message (through webhook), data sent to an endpoint.
+[diagram]
+
+
+- caveats! Lambda is pretty new, ways of deploying lambda are pretty new, you can't do super long running processes because there is a 5 minute timeout, it's through AWS (lock in), cold start functions after ~4 hours (which is less promblematic for JS than Java)
 
 
 ---
 
 ## Why is Node.js uniquely suited for handling these problems? 
 ( I am well prepared to talk about this as I have been battling a coworker of mine for the past couple months who really wants to write all of our lambdas in Go and really hates Javascript. Why does it take 50 lines of code to write a POST??? )
-This is a good question too. Because Kickstarter itself is written in Rails - we have two Rails apps, and a series of Java microservices. Our frontend has been bounced around a bit but is written in jquery and more recently, React. 
+This is a good question too. Because Kickstarter itself is written in Rails - we have two large Rails apps, and a series of Java microservices. Our frontend has been bounced around a bit but is written in jquery and more recently, React. 
 
-So we really have no connection to Node or allegiance to it. So why write these lambdas in Node? 
+So we really have no connection to Node or allegiance to it. So why write these lambdas in Node? Not Python? Or Java? 
+
+ARGUEMENT #1: 
 
 Core node principles are helpful for functional programming and AWS Lambda 
+
 We could use Python or Go, but we chose node. 
 - Single Functionality principle
 - Substack patterns - define more here
@@ -71,26 +83,42 @@ We could use Python or Go, but we chose node.
 - Promises
 - simple model for i/o
 - we really <3 functional programming and Node makes that easy (well, maybe not easy but doable and great for learning)
-
-- caveats! Lambda is pretty new, ways of deploying lambda are pretty new, you can't do super long running processes because there is a 5 minute timeout, it's through AWS 
-
----
-
-Deployment Options
-
-<!-- 2 min
--->
-* SAM - command line tool written in Nodejs
-* Apex & CircleCI
-* Gateway API + Serverless
-- serverless will get you up and started super quick
-- show a gif of using that and wuzz with deployment lines in influxdb 
+- your apps are basically functions!
 
 ---
+
+ARGUMENT #2: Writing lambdas can help you write Node.
+
+I was introduced to the two of them at the same time. 
 
 Functional Programming with AWS Lambda, immutability and point-free programming
 <!-- 5 min
 -->
+Dependency injection: instead of using hardcoded dependencies, we can pass the dependencies (mocked out for tests) into our module. This make testing much easier. For example, with our slack functions we don't have to deal with POSTs to the webhook repeatedly. There's no implicit execution of external code. 
+
+Pure functions: no side effects, promise-based, promises help it be reactive to data. 
+
+Incorporates great with AWS lambda's "Push/Pull model" - an event producer directly calls the lambda function and pulls update from data stream to invoke the function
+
+Pure functions allow for the lower complexity of programs, immutability reduces points
+
+Think: we have this tech that is processing the same events over and over (either triggered or scheduled)
+A pure function is a function, that, given the same parameters, will always return the same result. 
+So this build perfectly into any functional ecosystem. The data comes in, data goes out 
+
+---
+
+Deployment Options & Tools
+
+<!-- 2 min
+-->
+- single function deployments
+
+* SAM & Gateway API - command line tool written in Nodejs
+* Apex & CircleCI
+* Serverless (love CF)
+- serverless will get you up and started super quick
+- show a gif of using that and wuzz with deployment lines in influxdb 
 
 --- 
 
@@ -132,6 +160,12 @@ Resource creation via CloudFormation -> hits the lambda, through access control 
 ---
 
 twitter bot?
+
+---
+
+Summary: It will sharpen your node skills
+save you money
+
 
 ---
 
