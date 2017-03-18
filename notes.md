@@ -1,99 +1,173 @@
-# Node in a Serverless World
+# Node.js in a Serverless World
+
+<!-- Pitch: Node can be a great ally to any ops engineer. This talk will dive into AWS lambdas, a.k.a serverless functions and show how Node can be used to build a small application running on AWS Lambda with the help of the a new deployment model called SAM (AWS Serverless Application Model). We will also discuss testing (with Mocha and Chai) as well as moving towards purely functional javascript and some of its concepts (immutability and point-free programming). -->
 
 ---
 
-Who am I? 
+# Who am I? 
 
 - Logan McDonald
 - @loganmeetsworld on twitter / github
-- Node since last year
-- Enjoys: Ops, security, creative problem solving
 - Job: Kickstarter (in NYC) Ops & Security 
+  - Ops, security, creative problem solving
 - NodeJS Experience: Newbie!
+
+<!-- 5 min
+ * I want to talk about my experiences learning Node and using serverless, how it made me a better developer and why I think the two are great together. 
+-->
 
 --- 
 
 # Roadmap
-- What is serverless anyway? Why use it? 
-- Where does Node come in? 
-- What about deployment, security, performance? 
-- Examples
+
+## Background on Serverless  
+--
+## Node 💖 Serverless
+--
+## Deployment & Performance
+--
+## Examples
 
 ---
 
-## What is serverless?
-- Surprise it's not actually serverless!
-- Some of the examples I'm going to show today are ways to use a "serverless" model to find servers or initiate the creation of servers, so we are using serverless to create servers, oh the irony.
-- We do not have everything running on serverless by any means, we use lots of EC2 instances, ECS infrastructure, etc. 
-- Serverless is a movement to abstract users away from servers, infrastructure, low-level configuration, etc.
-- It's a way to slowly chip away at the work that your servers are doing
-- For example, we were running this instance for our ChatOps infrastructure but slowly realized most of the things we were using that software for: deployments, notifications, AWS alerts
-
----
-
-## AWS Lambda
-- Part of the "serverless" movement -- a "single purpose service"
-- Examples of other single purpose services (a huge draw of serverless): 
-Amazon S3 for file storage
-IAM/authentication for credential management
+# "Serverless"
 
 <!-- 5 min
-* actually misnomer, very serverfull
--->
+  * Surprise it's not actually serverless!
+  * I didn't come up with this word, nor do I particularly like it.
+--> 
+
+--- 
+
+# FaaS
+## App === Bunch of Functions
+
+<!-- 5 min
+  * When I say Serverless, I'm talking about two things. 
+  * The first is Functions as a Service. You only pay for the time your function runs and each function has a single purpose. 
+  * An App === A bunch of functions
+--> 
 
 ---
 
-## Why serverless? 
-- Autoscales automatically
-- pay-per-execution
-- inherintly a microservice, which we love
+## _Serverless is an abstraction movement._
+
+<!-- 5 min
+  * The second thing I mean when I say serverless.
+  * Serverless is a movement to abstract users away from servers, infrastructure, low-level configuration, etc.
+  * Some of the examples I'm going to show today are ways to use a "serverless" model to find servers or initiate the creation of servers, so we are using serverless to create servers, oh the irony.
+  * We do not have everything running on serverless by any means, we use lots of EC2 instances, ECS infrastructure, etc. 
+  * It's a way to slowly chip away at the work that your servers are doing and a very valuable tool to have in your toolbelt, but I'm not making the argument for #NoOps or anything
+  * For example, we were running this instance for our ChatOps infrastructure but slowly realized most of the things we were using that software for: deployments, notifications, AWS alerts (more about that later)
+--> 
 
 ---
 
-## AWS Lambda
-Simple: You define a function that performs an operation and AWS provisions and schedules the function. 
-
-All about data flow. Data flows in, data flows out. 
-
-For example 
-SNS Notifications / S3 uploads -> LAMBDA -> visualization, slack message (through webhook), data sent to an endpoint.
-[diagram]
-
-
-- caveats! Lambda is pretty new, ways of deploying lambda are pretty new, you can't do super long running processes because there is a 5 minute timeout, it's through AWS (lock in), cold start functions after ~4 hours (which is less promblematic for JS than Java)
-
+## Making the Argument for Serverless
 
 ---
 
-## Why is Node.js uniquely suited for handling these problems? 
-( I am well prepared to talk about this as I have been battling a coworker of mine for the past couple months who really wants to write all of our lambdas in Go and really hates Javascript. Why does it take 50 lines of code to write a POST??? )
-This is a good question too. Because Kickstarter itself is written in Rails - we have two large Rails apps, and a series of Java microservices. Our frontend has been bounced around a bit but is written in jquery and more recently, React. 
+<!-- 
+  THEM
+--> 
 
-So we really have no connection to Node or allegiance to it. So why write these lambdas in Node? Not Python? Or Java? 
+## autoscales automatically
+--
+## pay-per-execution
+--
+## inherintly a microservice
+--
+
+---
+
+<!-- 
+  ME
+--> 
+
+## fits with node
+--
+## functional programming
+--
+## devops compatible 
+
+---
+
+# Caveats! 
+- Lambda is new
+- Lambda deployment is new 
+- 5 minute timeout
+- AWS/Google/IBM lock in
+- Cold start functions after ~4 hours
+
+---
+
+# AWS Lambda Functions
+
+<!-- 
+  * What I'm talking about today - what I have experience in, but a lot of the major services are very similar
+  * Part of the "serverless" movement - a "single purpose service"
+  * Examples of other single purpose services (a huge draw of serverless): 
+    * Amazon S3 for file storage
+    * IAM/authentication for credential management
+--> 
+
+<!-- 
+  * Simple setup on AWS: You define a function that performs an operation and AWS provisions and schedules the function. 
+  * All about data flow. Data flows in, data flows out. 
+--> 
+
+---
+
+# fits with node
+
+---
+
+<!-- * Why is Node.js uniquely suited for handling these problems? 
+* So we really have no connection to Node or allegiance to it. So why write these lambdas in Node? Not Python? Or Java? 
+* We have competing coworkers at work who like Ruby (why does it take 50 lines to wirte a post?)
+* This is a good question too. Because Kickstarter itself is written in Rails - we have two large Rails apps, and a series of Java microservices. Our frontend has been bounced around a bit but is written in jquery and more recently, React. 
 
 ARGUEMENT #1: 
 
 Core node principles are helpful for functional programming and AWS Lambda 
+We could use Python or Go, but we chose Node. 
 
-We could use Python or Go, but we chose node. 
-- Single Functionality principle
-- Substack patterns - define more here
+--> 
+
+### _Node.js Design Patterns_
+- Single functionality principle
+- Substack patterns
 - Small surface area
-- separation of concerns (functions should perform a single job)
+- Separation of concerns (functions should perform a single job, much like modules)
 - Promises
-- simple model for i/o
-- we really <3 functional programming and Node makes that easy (well, maybe not easy but doable and great for learning)
-- your apps are basically functions!
+- Simple model for i/o
 
 ---
+
+# functional programming
+
+<!-- 
+- we really <3 functional programming and Node makes that easy (well, maybe not easy but doable and great for learning)
+- Your apps are basically functions!
 
 ARGUMENT #2: Writing lambdas can help you write Node.
 
 I was introduced to the two of them at the same time. 
 
-Functional Programming with AWS Lambda, immutability and point-free programming
-<!-- 5 min
 -->
+
+--- 
+
+## immutability & point-free
+--
+--
+## pure functions with promises
+--
+--
+## dependency injection for testing
+
+<!--
+Functional Programming with AWS Lambda, immutability and point-free programming
 Dependency injection: instead of using hardcoded dependencies, we can pass the dependencies (mocked out for tests) into our module. This make testing much easier. For example, with our slack functions we don't have to deal with POSTs to the webhook repeatedly. There's no implicit execution of external code. 
 
 Pure functions: no side effects, promise-based, promises help it be reactive to data. 
@@ -105,71 +179,54 @@ Pure functions allow for the lower complexity of programs, immutability reduces 
 Think: we have this tech that is processing the same events over and over (either triggered or scheduled)
 A pure function is a function, that, given the same parameters, will always return the same result. 
 So this build perfectly into any functional ecosystem. The data comes in, data goes out 
+-->
 
 ---
 
-Deployment Options & Tools
+# devops compatible 
 
-<!-- 2 min
--->
-- single function deployments
+<!--
+ * Serverless Redefining DevOps: https://redmonk.com/fryan/2017/03/02/serverless-redefining-devops/
+ * functions will be part of an overall continuum of development approaches
+ * bring value without the additional administrative overhead of another environment
+--> 
 
-* SAM & Gateway API - command line tool written in Nodejs
-* Apex & CircleCI
-* Serverless (love CF)
+---
+
+# Painless Deployment Tools
+--
+- SAM & Gateway API
+- Apex & CircleCI
+- Serverless Framework
+
+<!--
 - serverless will get you up and started super quick
 - show a gif of using that and wuzz with deployment lines in influxdb 
-
---- 
-
-Testing
-<!-- 3 min
 -->
 
 --- 
 
-Examples
-<!-- 15 min
--->
+## DevOps Use Cases
+- stack output outputs with cloudformation 
+- vault secret store / consul for secret management app finder
+- deployment notifier
+- notifications to Slack for CloudFormation updates
+- Slack slash commands
+
+<!-- 
+* stack output finder: gathers all the information needed to spin up a new instance like the latest AMI, VPCID, Subnets, and KeyID
+* deployment notifier: have applications handling deployment notify Slack, Grafana, NewRelic, & Email when someone has deployed
+--> 
 
 ---
 
-sns-to-slack
+# my first lambda function: 
+# `sns-to-slack`
 
 ---
 
-finder for stack outputs with cloudformation (gathers all the information needed to spin up a new instance)
-
-For example when a resource is created via CloudFormation, it triggers a lambda, which returns it the latest AMI, VPCID, Subnets, and KeyID
-
-
-```
-LambdaVPCSubnetsGetter:
-  Type: Custom::Getter
-  Properties:
-    ServiceToken: '<lamba-function-vpc-finder>'
-    Environment: !Ref Environment
-    Service: influxdb
-```
-
----
-
-Vault secret store / Consul for secret managment 
-Resource creation via CloudFormation -> hits the lambda, through access control lists
-
----
-
-twitter bot?
-
----
-
-Summary: It will sharpen your node skills
-save you money
-
-
----
-
-<!-- Prompt: Node can be a great ally to any ops engineer. This talk will dive into AWS lambdas, a.k.a serverless functions and show how Node can be used to build a small application running on AWS Lambda with the help of the a new deployment model called SAM (AWS Serverless Application Model). We will also discuss testing (with Mocha and Chai) as well as moving towards purely functional javascript and some of its concepts (immutability and point-free programming). -->
-
----
-
+# Summary
+- broaden your Node.js toolbox
+- sharpen your node skills with functional programming techniques
+- save money by only paying for what you use
+- have fun!
