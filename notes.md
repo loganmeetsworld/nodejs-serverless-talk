@@ -116,24 +116,35 @@ I want to talk about:
 
 # 1. fits with node
 
----
-
-### _Node.js Design Patterns_
-- Single functionality principle
-- Substack patterns
-- Small surface area
-- Separation of concerns (functions should perform a single job, much like modules)
-- Promises
-- Simple model for i/o
-
 ^ Why is Node.js uniquely suited for handling these problems? 
 * So we really have no connection to Node or allegiance to it. So why write these lambdas in Node? Not Python? Or Java? 
 * We have competing coworkers at work who like Ruby (why does it take 50 lines to wirte a post?)
-* This is a good question too. Because Kickstarter itself is written in Rails - we have two large Rails apps, and a series of Java microservices. Our frontend has been bounced around a bit but is written in jquery and more recently, React. 
-* ARGUEMENT #1:
+* This is a good question too. Because Kickstarter itself is written in Rails - we have two large Rails apps, and a series of Java microservices. 
 * Core node principles are helpful for functional programming and AWS Lambda 
 * We could use Python or Go, but we chose Node. 
-* This can broaden your Node toolkit
+* This can broaden your Node toolkit.
+
+---
+
+### _Node.js Design Patterns_
+- Single responsibility principle
+- Substack patterns
+- Promises
+- Simple model for i/o
+
+^ Definitions: 
+* Note: I started reading this book at the same time I started using lambda functions, saw a lot of paralells
+- Single responsibility principle:
+* Every module should have responsibility over a single functionality
+* functions should perform a single job, much like modules
+- Substack patterns
+* Expose the main functionality of a module by exporing only one function and use the exported function as namespace to expose other functions
+- Promises
+* abstraction that allows us to return a function 
+* Sequential iteration with Promises allows us to organize our code to make it readibe and easy to know how data is flowing through. 
+- Simple model for i/o
+* non-blocking model for i/o
+* allows us to process lots of events asynchronously 
 
 ---
 
@@ -143,6 +154,7 @@ I want to talk about:
 * Your apps are basically functions!
 * ARGUMENT #2: Writing lambdas can help you write Node.
 * I was introduced to the two of them at the same time. 
+* We promisify everything in our lambdas
 
 --- 
 
@@ -228,6 +240,8 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 ![inline](/Users/loganmcdonald/Desktop/index.png)
 
 ^ Starting with the index where our function is defined, we pass it some dependencies and then run those dependencies through a function "manager"
+* Provide dependencies as input
+* Thus allowing our slack manager to use any dependency and therefore allowing it to be used in different contexts (different kinds of SNS calls)
 * These dependencies help us mock out our postToSlack for easy testing
 
 ---
@@ -270,6 +284,7 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 
 ^ The Promise.all allows us to take any urlOptions passed through to this function and post them to slack at once 
 * Again this allows our functions to be agnostic to the events they get, processing each in pure data flow
+* Allows for parallel execution 
 
 ---
 
