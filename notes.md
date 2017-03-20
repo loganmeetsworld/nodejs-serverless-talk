@@ -208,6 +208,7 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 ^ stack output finder: gathers all the information needed to spin up a new instance like the latest AMI, VPCID, Subnets, and KeyID
 * deployment notifier: have applications handling deployment notify Slack, Grafana, NewRelic, & Email when someone has deployed
 * NOTE: I think the idea of having a ton of data and wanting to pipe it to actons in particular ways is _very_ familiar to the DevOps engineer. When we think about monitoring systems, we have a ton of metrics and information that all needs to be _filtered_ and _reduced_ along the way. Lambda makes a lot of sense to us. 
+* Lots of one off scripts that have tricky problems like crossing availability zones or VPC's too.
 
 ---
 
