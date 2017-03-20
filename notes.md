@@ -303,3 +303,12 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 - sharpen your node skills with functional programming techniques
 - save money by only paying for what you use
 - have fun!
+
+----
+
+# Thanks!
+### My glorious team: 
+
+# Natacha
+# Aaron
+# Kyle
