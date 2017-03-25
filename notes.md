@@ -291,6 +291,10 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 
 ---
 
+# Make sure we have tests!
+
+---
+
 # Now deploy it!
 ![inline](/Users/loganmcdonald/dev/nodejs-serverless-talk/assets/img/deploy.png)
 
@@ -301,7 +305,7 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 
 # Summary
 - broaden your Node.js toolbox
-- sharpen your node skills with functional programming techniques
+- sharpen your Node.js skills with functional programming techniques
 - save money by only paying for what you use
 - have fun!
 
