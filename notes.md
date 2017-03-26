@@ -28,7 +28,7 @@ I want to talk about:
 
 ## Background on Serverless  
 --
-## Why Node & I 💖 Serverless
+## Why Node.js & I 💖 Serverless
 --
 ## Examples
 
@@ -82,7 +82,7 @@ I want to talk about:
 
 ---
 
-## 1. fits with node
+## 1. compatability with Node.js
 --
 ## 2. functional programming
 --
