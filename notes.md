@@ -75,7 +75,7 @@ I want to talk about:
 --
 ## pay-per-execution
 --
-## inherintly a microservice
+## inherently a microservice
 --
 
 ^ Common arguements
@@ -110,9 +110,9 @@ I want to talk about:
 * What I have experience in, but a lot of the major services are very similar
 * Part of the "serverless" movement - a "single purpose service"
 * Examples of other single purpose services (a huge draw of serverless): 
-  * Amazon S3 for file storage
-  * IAM/authentication for credential management
+  * Amazon S3 for file storage, IAM/authentication for credential management
 * Simple setup on AWS (as seen here): You define a function that performs an operation and AWS provisions and schedules the function. Nice console for dealing with it. 
+* under the surface what it's doing: executing your code in a container and then killing the container (where the cold start issue comes in because of warm containers)
 
 ---
 
