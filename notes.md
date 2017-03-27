@@ -86,7 +86,7 @@ I want to talk about:
 --
 ## 2. functional programming
 --
-## 3. devops compatible 
+## 3. devops use cases 
 
 ^ My further arguements
 
@@ -116,7 +116,7 @@ I want to talk about:
 
 ---
 
-# 1. fits with node
+# 1. compatability with Node.js
 
 ^ Why is Node.js uniquely suited for handling these problems? 
 * So we really have no connection to Node or allegiance to it. So why write these lambdas in Node? Not Python? Or Java? 
@@ -179,7 +179,7 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 
 ---
 
-# 3. devops compatible 
+# 3. devops use cases
 
 ^ Serverless Redefining DevOps: https://redmonk.com/fryan/2017/03/02/serverless-redefining-devops/
 * functions will be part of an overall continuum of development approaches
@@ -189,7 +189,7 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 
 # Painless Deployment Tools
 --
-- SAM & Gateway API
+- SAM & API Gateway
 - Apex & CircleCI
 - Serverless Framework
 
@@ -199,10 +199,9 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 --- 
 
 ## DevOps Use Cases
-- stack output outputs with cloudformation 
-- vault secret store / consul for secret management app finder
+- one off bash scripts -> lambda functions
 - deployment notifier
-- notifications to Slack for CloudFormation updates
+- chat notifications
 - Slack slash commands
 
 ^ stack output finder: gathers all the information needed to spin up a new instance like the latest AMI, VPCID, Subnets, and KeyID
