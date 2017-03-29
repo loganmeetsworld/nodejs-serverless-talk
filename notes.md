@@ -28,6 +28,8 @@ I want to talk about:
 
 ## Background on Serverless  
 --
+## Introduction to AWS Lambdas
+--
 ## Why Node.js & I 💖 Serverless
 --
 ## Examples
@@ -62,6 +64,20 @@ I want to talk about:
 * It's a way to slowly chip away at the work that your servers are doing and a very valuable tool to have in your toolbelt, but I'm not making the argument for #NoOps or anything
 * For example, we were running this instance for our ChatOps infrastructure but slowly realized most of the things we were using that software for: deployments, notifications, AWS alerts (more about that later)
 
+---
+
+# AWS Lambda Functions
+
+![inline](/Users/loganmcdonald/dev/nodejs-serverless-talk/assets/img/aws.png)
+![inline](/Users/loganmcdonald/dev/nodejs-serverless-talk/assets/img/aws-function.png)
+ 
+^ What I'm talking about today - AWS
+* What I have experience in, but a lot of the major services are very similar
+* Part of the "serverless" movement - a "single purpose service"
+* Examples of other single purpose services (a huge draw of serverless): 
+  * Amazon S3 for file storage, IAM/authentication for credential management
+* Simple setup on AWS (as seen here): You define a function that performs an operation and AWS provisions and schedules the function. Nice console for dealing with it. 
+* under the surface what it's doing: executing your code in a container and then killing the container (where the cold start issue comes in because of warm containers)
 
 ---
 
@@ -99,20 +115,7 @@ I want to talk about:
 - AWS/Google/IBM lock in
 - Cold start functions after ~4 hours
 
----
-
-# AWS Lambda Functions
-
-![inline](/Users/loganmcdonald/dev/nodejs-serverless-talk/assets/img/aws.png)
-![inline](/Users/loganmcdonald/dev/nodejs-serverless-talk/assets/img/aws-function.png)
- 
-^ What I'm talking about today - AWS
-* What I have experience in, but a lot of the major services are very similar
-* Part of the "serverless" movement - a "single purpose service"
-* Examples of other single purpose services (a huge draw of serverless): 
-  * Amazon S3 for file storage, IAM/authentication for credential management
-* Simple setup on AWS (as seen here): You define a function that performs an operation and AWS provisions and schedules the function. Nice console for dealing with it. 
-* under the surface what it's doing: executing your code in a container and then killing the container (where the cold start issue comes in because of warm containers)
+^ Before we delve further into the arguments for serverless and lambdas
 
 ---
 
@@ -128,11 +131,11 @@ I want to talk about:
 
 ---
 
-### _Node.js Design Patterns_
-- Single responsibility principle
-- Substack patterns
-- Promises
-- Simple model for i/o
+# _Node.js Design Patterns_
+## Single responsibility principle
+## Substack patterns
+## Promises
+## Simple model for i/o
 
 ^ Definitions: 
 * Note: I started reading this book at the same time I started using lambda functions, saw a lot of paralells
@@ -204,8 +207,8 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 - chat notifications
 - Slack slash commands
 
-^ stack output finder: gathers all the information needed to spin up a new instance like the latest AMI, VPCID, Subnets, and KeyID
-* deployment notifier: have applications handling deployment notify Slack, Grafana, NewRelic, & Email when someone has deployed
+^ deployment notifier: have applications handling deployment notify Slack, Grafana, NewRelic, & Email when someone has deployed
+* I want to talk a little bit about the deployment notifier
 * NOTE: I think the idea of having a ton of data and wanting to pipe it to actons in particular ways is _very_ familiar to the DevOps engineer. When we think about monitoring systems, we have a ton of metrics and information that all needs to be _filtered_ and _reduced_ along the way. Lambda makes a lot of sense to us. 
 * Lots of one off scripts that have tricky problems like crossing availability zones or VPC's too.
 
