@@ -12,7 +12,7 @@ theme: Next, 1
 
 - Logan McDonald
 - @loganmeetsworld on twitter / github
-- Job: Kickstarter (in NYC) Ops & Security 
+- Job: Kickstarter, PBC (in NYC) Ops & Security 
   - Ops, security, creative problem solving
 - NodeJS Experience: Newbie!
 
