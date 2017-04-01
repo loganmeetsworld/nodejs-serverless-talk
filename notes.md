@@ -72,6 +72,7 @@ I want to talk about:
 ![inline](/Users/loganmcdonald/dev/nodejs-serverless-talk/assets/img/aws-function.png)
  
 ^ What I'm talking about today - AWS
+* Walk through decription of Lambda functions in particular
 * What I have experience in, but a lot of the major services are very similar
 * Part of the "serverless" movement - a "single purpose service"
 * Examples of other single purpose services (a huge draw of serverless): 
