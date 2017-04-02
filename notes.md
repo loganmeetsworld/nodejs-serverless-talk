@@ -298,6 +298,10 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 
 ---
 
+# Add test slide
+
+---
+
 # Now deploy it!
 ![inline](/Users/loganmcdonald/dev/nodejs-serverless-talk/assets/img/deploy.png)
 
