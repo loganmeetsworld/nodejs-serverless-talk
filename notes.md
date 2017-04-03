@@ -12,7 +12,7 @@ theme: Next, 1
 
 - Logan McDonald
 - @loganmeetsworld on twitter / github
-- Job: Kickstarter (in NYC) Ops & Security 
+- Job: Kickstarter, PBC (in NYC) Ops & Security 
   - Ops, security, creative problem solving
 - Node.js Experience: Newbie!
 
@@ -72,6 +72,7 @@ I want to talk about:
 ![inline](/Users/loganmcdonald/dev/nodejs-serverless-talk/assets/img/aws-function.png)
  
 ^ What I'm talking about today - AWS
+* Walk through decription of Lambda functions in particular
 * What I have experience in, but a lot of the major services are very similar
 * Part of the "serverless" movement - a "single purpose service"
 * Examples of other single purpose services (a huge draw of serverless): 
@@ -295,6 +296,10 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 ---
 
 # Make sure we have tests!
+
+---
+
+# Add test slide
 
 ---
 
