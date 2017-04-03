@@ -15,6 +15,7 @@
 
 ## Lambda Resources
 * [How to Keep Your Lambda Functions Warm](https://read.acloud.guru/how-to-keep-your-lambda-functions-warm-9d7e1aa6e2f0?__s=gx8onwvcsuc16vesx6nd#.m13nnoy9t)
+* [Lambda as a Proxy](https://serverlesscode.com/post/spreaker-using-lambda-as-a-proxy/)
 
 ## Node/JS Resources (how we code lambdas)
 
