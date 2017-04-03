@@ -1,4 +1,4 @@
-theme: Next, 1
+theme: Sketchnote, 5
 
 # Node.js in a Serverless World
 
