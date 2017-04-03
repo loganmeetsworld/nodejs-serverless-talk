@@ -299,7 +299,11 @@ So this build perfectly into any functional ecosystem. The data comes in, data g
 
 ---
 
-# Add test slide
+# parseEvent.test.js
+
+![inline](/Users/loganmcdonald/dev/nodejs-serverless-talk/assets/img/test.png)
+
+^ This allows us to test out these individual functions with Mocha and Chai, which is awesomme!
 
 ---
 
