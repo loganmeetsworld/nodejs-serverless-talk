@@ -14,7 +14,7 @@ theme: Next, 1
 - @loganmeetsworld on twitter / github
 - Job: Kickstarter (in NYC) Ops & Security 
   - Ops, security, creative problem solving
-- NodeJS Experience: Newbie!
+- Node.js Experience: Newbie!
 
 ^ I'm a newbie to Node and Lambdas. 
 I want to talk about:
@@ -81,7 +81,7 @@ I want to talk about:
 
 ---
 
-## Making the Argument for Serverless
+## Making the Argument for Serverless & Lambdas
 
 ^ Common arguments and mine
 
@@ -102,9 +102,10 @@ I want to talk about:
 --
 ## 2. functional programming
 --
-## 3. devops use cases 
+## 3. "devops" use cases 
 
 ^ My further arguements
+I put devops in quotes because what I mean by this is general things we could use to develop software, but devops tends to take on a lot of the nitty gritty infrastructure type work I'm talking baout 
 
 ---
 
