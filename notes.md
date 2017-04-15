@@ -80,6 +80,7 @@ My talk today will include:
 * To you: code magically runs when triggered
 * Only three components you need to be aware of: Events, Your Code, Results
 * Those events can be whatever you want: API gateway endpoint (route & method), aws-sdk trigger, simple notification service, CloudWatch event, etc. 
+* Event streams are the power behind AWS lambda
 
 ---
 
